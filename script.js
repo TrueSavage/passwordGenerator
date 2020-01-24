@@ -1,5 +1,5 @@
 // Assignment Code
-
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 // function writePassword() {
@@ -12,15 +12,19 @@
 //   let Numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-let generateBtn = document.querySelector("#generate") {
-}
-let all = specials + lowercase + uppercase + numbers
+
+let specials = /[!@#$%^&*()]/;
+let lowerCase = /[a-z]/;
+let upperCase = /[A-Z]/;
+let numbers = /[0-9]/;
+
+let all = specials + lowerCase + upperCase + numbers
 function generatePassword() {
   let password = ''
 
   password += pick(password, specials, 1, 3)
-  password += pick(password, lowercase, 1, 3)
-  password += pick(password, uppercase, 1, 3)
+  password += pick(password, lowerCase, 1, 3)
+  password += pick(password, upperCase, 1, 3)
   password += pick(password, all, 8)
 
   return shuffle(password)
@@ -45,18 +49,15 @@ function pick(exclusions, string, min, max) {
 }
 
 let length = prompt('must have a minimum of 8 and max 128 characters')
-let lowerCase = confirm('must have at least one lower case letter')
-let uppercase = confirm('must have at least one uppercase letter')
-let specials = confirm('must use at least one special character')
-let numbers = confirm('must use at least one number')
+let isLowerCase = confirm('must have at least one lower case letter')
+let isUpperCase = confirm('must have at least one uppercase letter')
+let isSpecials = confirm('must use at least one special character')
+let isNumbers = confirm('must use at least one number')
 
 
 function check_form() {
   let password = document.getElementById('password-input-0').value;
-  let special = /[!@#$%^&*()]/;
-  let letter = /[a-z]/;
-  let letterUp = /[A-Z]/;
-  let number = /[0-9]/;
+
 
   if (password.length < 8 || !special.test(password) || !letter.test(password) || !number.test(password)) {
 
@@ -64,7 +65,7 @@ function check_form() {
       prompt("Please make sure password is longer than 8 characters.")
       return false
     }
-    if (!special.test(password) {
+    if (!special.test(password)) {
       prompt("Please make sure password includes at least one special character")
       return false
     }
@@ -81,20 +82,27 @@ function check_form() {
     let password = generatePassword();
     let passwordText = document.querySelector("#password");
   }
-      
+
 }
 
-      //create a for loop to loop through the arrays 
+//create a for loop to loop through the arrays 
 
-      //create conditional statement to print out characters
-
-
-
-      //passwordText.value = password;
+//create conditional statement to print out characters
 
 
-    //Add event listener to generate button
-    //generateBtn.addEventListener("click", writePassword);
+//this line selects the element with the password ID
+function writePassword() {
+  //this line selects the element with the password ID
+  var password = generatePassword()
+  var passwordText = document.querySelector("#password")
+  // This line is the password displayed in the box after the button is clicked
+  passwordText.value = password
+}
+// Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword)
+
+
 
 
 // create 4 arrays
