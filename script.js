@@ -1,27 +1,23 @@
 
-//Write password to the #password input
-//function writePassword() {
-let lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-let uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-
-let specials = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', ' ^ ', '_', '`', '{', '|', '}', '~']
-
-let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
-
-// let uppercase = /[A-Z]/;
-// let lowercase = /[a-z]/;
-// let numbers = /[0-9]/;
-// let specials = /[!@#$%^&*()]/;
-let newArray = [];
-let finalPassword;
 
 //function to generate password
 function generatePassword() {
 
 
+  let lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+  let uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+  let specials = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+
+  let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  let newArray = [];
+
+  let finalPassword = "";
+
+  let passArray = [];
 
   //1- add prompt to get the total number of characters 8-128
   let length = parseInt(prompt('Choose a number between 8 and 128 for password?'))
@@ -43,7 +39,7 @@ function generatePassword() {
   let specialChar = confirm('Do you want special characters')
 
   // create a loop to loop through the arrays to generate a new array of characters
-  for (i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     if (uppercaseChar === true) {
       newArray.push(uppercase[Math.floor(Math.random() * uppercase.length)])
       // console.log('it works')
@@ -66,20 +62,36 @@ function generatePassword() {
 
       // console.log('it works')
     }
-
-    console.log(newArray)
-
-
   }
 
+  // grab first four characters of the new array
+  let firstFour = newArray[0] + newArray[1] + newArray[2] + newArray[3];
+  console.log("first 4 = " + firstFour)
+  //for loop to get the remaining characters
+  for (let i = 0; i < length - 4; i++) {
+    passArray.push(newArray[Math.floor(Math.random() * newArray.length)])
+
+  }
+  //created a string with the first four and final reamianing char. 
+  let finalArray = firstFour + passArray.join('');
+  console.log(finalArray);
+  //console.log(newArray)
+
+  //shuffle the finalArray string to be more random
+  finalPassword = finalArray.split('');
+  //console.log(finalPassword);
+  finalPassword.sort(function () {
+    return 0.5 - Math.random()
+  })
+
+  finalPassword = finalPassword.join('')
 
 
 
-
-
-
-
-
+  //this line will display to the DOM
+  document.getElementById('password').innerHTML = finalPassword;
 }
 
-document.getElementById('password').innerHTML = finalPassword;
+
+
+
