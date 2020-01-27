@@ -1,21 +1,22 @@
 
-// Write password to the #password input
-// function writePassword() {
-//   let lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+//Write password to the #password input
+//function writePassword() {
+let lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-//   let upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+let uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-//   let specials = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', ' ^ ', '_', '`', '{', '|', '}', '~']
+let specials = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', ' ^ ', '_', '`', '{', '|', '}', '~']
 
-//   let Numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 
-let uppercase = /[A-Z]/;
-let lowercase = /[a-z]/;
-let numbers = /[0-9]/;
-let specials = /[!@#$%^&*()]/;
-
+// let uppercase = /[A-Z]/;
+// let lowercase = /[a-z]/;
+// let numbers = /[0-9]/;
+// let specials = /[!@#$%^&*()]/;
+let newArray = [];
+let finalPassword;
 
 //function to generate password
 function generatePassword() {
@@ -41,6 +42,35 @@ function generatePassword() {
   // prompt user to confirm  if they want specials char?  y/n?
   let specialChar = confirm('Do you want special characters')
 
+  // create a loop to loop through the arrays to generate a new array of characters
+  for (i = 0; i < length; i++) {
+    if (uppercaseChar === true) {
+      newArray.push(uppercase[Math.floor(Math.random() * uppercase.length)])
+      // console.log('it works')
+    }
+
+    if (lowercaseChar === true) {
+      newArray.push(lowercase[Math.floor(Math.random() * lowercase.length)])
+
+      // console.log('it works')
+    }
+
+    if (numberChar === true) {
+      newArray.push(numbers[Math.floor(Math.random() * numbers.length)])
+
+      // console.log('it works')
+    }
+
+    if (specialChar === true) {
+      newArray.push(specials[Math.floor(Math.random() * specials.length)])
+
+      // console.log('it works')
+    }
+
+    console.log(newArray)
+
+
+  }
 
 
 
